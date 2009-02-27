@@ -4,8 +4,6 @@
 # 
 # Find the sum of all the primes below two million.
 
-from Problem003 import next_prime
-
 def prime_list(limit):
     primes = range(2,limit)
 
@@ -28,21 +26,38 @@ def prime_list(limit):
     return primes
 
 def sum_of_primes(limit):
-    return sum(prime_list(limit))
+    return sum(prime_list3(limit))
 
+# This version doesn't really work because sets are not indexable
+# def prime_list2(limit):
+#     primes = set(range(2,limit))
+# 
+#     i = 0
+#     while i <= len(primes) - 1:
+#         
+#         num = primes[i] * 2
+# 
+#         while num < limit:
+# 
+#             primes.remove(num)
+# 
+#             num += primes[i]
+#         
+#         i += 1
 
-def prime_list2(limit):
-    primes = set(range(2,limit))
+def prime_list3(limit):
+    primes = dict([(i, True) for i in range(2,limit)])
 
-    i = 0
-    while i <= len(primes) - 1:
-        
-        num = primes[i] * 2
+    for num in sorted(primes.keys()):
+        if not primes[num]: continue
 
-        while num < limit:
+        multiple = num * 2
 
-            primes.remove(num)
+        while multiple < limit:
+            primes[multiple] = False
+            multiple += num
 
-            num += primes[i]
-        
-        i += 1
+    return [ n for n in sorted(primes.keys()) if primes[n] ]
+
+if __name__ == "__main__":
+    print sum_of_primes(2000000)
