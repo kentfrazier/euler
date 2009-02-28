@@ -22,9 +22,7 @@ def list_prime_factors(number):
         return num
 
     while current not in primes:
-#        try:
         primes.append(prime_generator.next())
-#        except StopIteration: break
 
         if current % primes[-1] == 0:
             current = get_next_number(current)
