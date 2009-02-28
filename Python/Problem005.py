@@ -1,12 +1,12 @@
 import math
-from Problem003 import next_prime
+import Problem003
 
 
 def list_prime_factors(number):
     current = number
     primes = []
     factors = []
-    prime_generator = next_prime()
+    prime_generator = Problem003.primes(number+1)
 
     def get_next_number(num):
         if num in primes:
@@ -22,7 +22,10 @@ def list_prime_factors(number):
         return num
 
     while current not in primes:
+#        try:
         primes.append(prime_generator.next())
+#        except StopIteration: break
+
         if current % primes[-1] == 0:
             current = get_next_number(current)
     
