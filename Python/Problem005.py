@@ -1,5 +1,5 @@
 import math
-from Problem3 import next_prime
+from Problem003 import next_prime
 
 
 def list_prime_factors(number):

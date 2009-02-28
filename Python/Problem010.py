@@ -3,6 +3,7 @@
 # The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.
 # 
 # Find the sum of all the primes below two million.
+import math
 
 def prime_list(limit):
     primes = range(2,limit)
@@ -47,11 +48,14 @@ def sum_of_primes(limit):
 
 def prime_list3(limit):
     primes = dict([(i, True) for i in range(2,limit)])
+    test_max = math.sqrt(limit)
 
     for num in sorted(primes.keys()):
+        if num > test_max: break
+
         if not primes[num]: continue
 
-        multiple = num * 2
+        multiple = num ** 2
 
         while multiple < limit:
             primes[multiple] = False

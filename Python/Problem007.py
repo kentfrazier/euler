@@ -1,4 +1,4 @@
-from Problem3 import next_prime
+from Problem003 import next_prime
 
 def get_nth_prime(n):
 	prime_generator = next_prime()
