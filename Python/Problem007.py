@@ -1,7 +1,7 @@
-from Problem003 import next_prime
+from Problem003 import primes
 
 def get_nth_prime(n):
-	prime_generator = next_prime()
+	prime_generator = primes()
 
 	for i in xrange(n):
 		prime = prime_generator.next()

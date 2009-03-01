@@ -1,7 +1,27 @@
 import math
 
-def primes(limit):
-    prime_list = []
+prime_number_list = [2,3]
+
+def primes(limit=None):
+    global prime_number_list
+
+    for prime in prime_number_list:
+        if limit and prime > limit: break
+        yield prime
+
+    num = prime_number_list[-1]
+    while True:
+        num += 2
+
+        if limit and num > limit: break
+
+        if any( num % prime == 0 for prime in prime_number_list ): continue
+
+        prime_number_list.append(num)
+        yield num
+
+def primes_old(limit):
+    prime_list = [2,3]
 
     yield 2
     yield 3
@@ -20,7 +40,7 @@ def prime_list(limit):
 
 def highest_prime_factor(number):
     
-    limit = math.floor(math.sqrt(number))
+    limit = math.sqrt(number)
 
     divisor = 2
 
