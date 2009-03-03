@@ -31,7 +31,6 @@ def next_number(number):
         return 3*number + 1
 
 def longest_sequence(limit):
-    # seq_lengths = dict([ (n, get_sequence(n)) for n in range(1,limit) ])
     seq_lengths = dict([ (n, sequence_length(n)) for n in range(1,limit) ])
 
     return max(seq_lengths.keys(), key=seq_lengths.get)
@@ -41,7 +40,12 @@ def sequence_length(number):
 
     global sequence_lengths
 
-    return sequence_lengths.setdefault(number, 1 + sequence_length(next_number(number)))
+    length = sequence_lengths.get(number)
+    if not length:
+        length = 1 + sequence_length(next_number(number))
+        sequence_lengths[number] = length
+
+    return length
 
 if __name__ == "__main__":
     print longest_sequence(1000000)

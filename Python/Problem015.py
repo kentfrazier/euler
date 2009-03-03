@@ -3,23 +3,44 @@
 # 
 # How many routes are there through a 20x20 grid?
 
-def Point(object):
-    pass
+def find_paths(start, end):
 
-def Grid(dict):
-    def __init__(self,height,width):
-        super(Grid,self).__init__()
+    x_change = 1 if start[0] < end[0] else -1
+    y_change = 1 if start[1] < end[1] else -1
 
-        self.height = height
-        self.width = width
+    if start[0] != end[0]:
+        for path in find_paths((start[0] + x_change, start[1]), end):
+            yield [start] + path
 
-        for y in range(height+1):
-            for x in range(width+1):
-                self[(x, y)] = Point(self, x, y)
+    if start[1] != end[1]:
+        for path in find_paths((start[0], start[1] + y_change), end):
+            yield [start] + path
 
-    def generate_paths(self, start, end):
-        if start.x < self.width:
-            yield [start] + self.generate_paths((start.x+1, start.y), end)
+    if start == end:
+        yield [end]
 
-        if start.y < self.height:
-            yield [start] + self.generate_paths((start.x, start.y+1), end)
+path_counts = {}
+
+def count_paths(start, end):
+
+    if start[0] == end[0] or start[1] == end[1]:
+        return 1
+
+    x_change = 1 if start[0] < end[0] else -1
+    new_x = (start[0] + x_change, start[1])
+
+    y_change = 1 if start[1] < end[1] else -1
+    new_y = (start[0], start[1] + y_change)
+
+    global path_counts
+
+    paths = path_counts.get((start,end))
+
+    if not paths:
+        paths = count_paths(new_x, end) + count_paths(new_y, end)
+        path_counts[(start,end)] = paths
+
+    return paths
+
+if __name__ == "__main__":
+    print count_paths((0,0),(20,20))
