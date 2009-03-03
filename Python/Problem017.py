@@ -47,6 +47,10 @@ class Numbers(object):
         self.places = {
             2: 'hundred',
             3: 'thousand',
+            6: 'million',
+            9: 'billion',
+            12: 'trillion',
+            15: 'quadrillion',
         }
 numbers = Numbers()
 
