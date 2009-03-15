@@ -11,13 +11,16 @@
 
 from Problem012 import factors
 
+def proper_divisors(num):
+    return factors(num)[:-1]
+
 sum_of_factors_cache = {}
 def sum_of_factors(num):
     global sum_of_factors_cache
 
     sof = sum_of_factors_cache.get(num)
     if not sof:
-        sof = sum(factors(num)[:-1])
+        sof = sum(proper_divisors(num))
         sum_of_factors_cache[num] = sof
     return sof
 
