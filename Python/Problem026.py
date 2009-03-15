@@ -32,7 +32,32 @@ def repeating_seq(divisor):
         if numerator == 0:
             raise NotRepeating('Decimal does not repeat.')
 
-        numerator = 10 * remainder
+        if numerator in sequences:
+            return sequences[numerator]
 
-        digit, remainder = divmod(numerator, divisor)
-        # TODO: figure out how to store these results and check them
+        digit, remainder = divmod(numerator * 10, divisor)
+
+        sequences[numerator] = []
+
+        for key in sequences.keys():
+            sequences[key].append(digit)
+
+        numerator = remainder
+
+def longest_repeating_seq(limit):
+    sequences = {}
+
+    for i in xrange(1,limit):
+        try:
+            sequences[i] = repeating_seq(i)
+        except NotRepeating, e:
+            continue
+
+    sorted_seqs =  sorted(sequences.items(), cmp=lambda x,y: len(y[1]) - len(x[1]))
+
+    return sorted_seqs[0]
+
+if __name__ == "__main__":
+    num, seq = longest_repeating_seq(1000)
+
+    print '%4d: %10s' % ( num, ''.join( map(str, seq) ) )
