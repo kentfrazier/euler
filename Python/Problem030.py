@@ -11,3 +11,29 @@
 # 
 # Find the sum of all the numbers that can be written as the sum of fifth 
 # powers of their digits.
+
+def power_sum(power):
+    def p_sum(number):
+        return sum([ int(digit)**power for digit in str(number) ])
+    return p_sum
+
+def power_sum_match_list(power):
+    power_sum_fn = power_sum(power)
+
+    test_num = 0
+    while True:
+        test_num = (test_num * 10) + 9
+        if len(str(test_num)) == len(str(power_sum_fn(test_num))):
+            len_limit = len(str(test_num))
+            break
+
+    matches = []
+    for num in xrange(10,10**len_limit):
+        if num == power_sum_fn(num):
+            matches.append(num)
+
+    return matches
+
+if __name__ == "__main__":
+    assert(sum(power_sum_match_list(4)) == 19316)
+    print sum(power_sum_match_list(5))
