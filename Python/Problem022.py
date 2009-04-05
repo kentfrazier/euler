@@ -20,10 +20,11 @@ char_values = dict([ (chr(n+64),n) for n in range(1,27) ])
 
 total = 0
 
-for i in xrange(len(names)):
-    name_val = sum([ char_values[c] for c in names[i] ])
-    name_val *= i+1
+if __name__ == "__main__":
+    for i in xrange(len(names)):
+        name_val = sum([ char_values[c] for c in names[i] ])
+        name_val *= i+1
 
-    total += name_val
+        total += name_val
 
-print total    
+    print total    
