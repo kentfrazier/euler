@@ -26,13 +26,13 @@ def d(pos):
     divisor, remainder = divmod(pos, length)
 
     if remainder == 0:
-        return int(str(divisor - 1)[-1])
+        return ( divisor - 1 ) % 10
 
     result = pos // ( length * 10**(length - remainder) )
     if remainder == 1:
         result += 1
 
-    return int(str(result)[-1])
+    return result % 10
 
 if __name__ == "__main__":
     import operator
