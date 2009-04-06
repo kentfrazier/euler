@@ -4,6 +4,11 @@
 # 
 # Find the sum of all the primes below two million.
 import math
+try:
+    import psyco
+    psyco.full()
+except ImportError:
+    pass
 
 def prime_list(limit):
     primes = range(2,limit)
