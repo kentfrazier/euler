@@ -33,21 +33,25 @@ def is_truncatable(number):
 def truncatable_primes():
 
     one_digit_primes = set(['2','3','5','7'])
+    forbidden_numbers = set(['4','6','8'])
 
     def is_candidate(number):
         num_str = str(number)
 
         if len(num_str) < 2: return False
 
-        if not num_str[0] in one_digit_primes and num_str[-1] in one_digit_primes:
+        if not set([num_str[0], num_str[-1]]) < one_digit_primes:
             return False
 
-        digits = set([ int(digit) for digit in num_str ])
+        digits = set([ digit for digit in num_str ])
 
-        if 5 in digits and num_str[0] != '5':
+        if digits & forbidden_numbers:
             return False
 
-        if any( d % 2 == 0 for d in digits ):
+        if '2' in digits and num_str[0] != '2':
+            return False
+
+        if '5' in digits and num_str[0] != '5':
             return False
 
         return True
@@ -55,9 +59,8 @@ def truncatable_primes():
     trunc_primes = []
 
     for prime in ifilter(is_truncatable,ifilter(is_candidate,primes)):
-        if is_candidate(prime):
-            if is_truncatable(prime):
-                trunc_primes.append(prime)
+        trunc_primes.append(prime)
+        if len(trunc_primes) == 11: break
 
     return trunc_primes
 
