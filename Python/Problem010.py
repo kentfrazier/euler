@@ -51,7 +51,7 @@ def sum_of_primes(limit):
 #         
 #         i += 1
 
-def prime_list3(limit):
+def prime_sieve(limit):
     primes = dict([(i, True) for i in range(2,limit)])
     test_max = math.sqrt(limit)
 
@@ -67,6 +67,8 @@ def prime_list3(limit):
             multiple += num
 
     return [ n for n in sorted(primes.keys()) if primes[n] ]
+
+prime_list3 = prime_sieve
 
 if __name__ == "__main__":
     print sum_of_primes(2000000)
