@@ -8,14 +8,20 @@
 # 
 # Find the last ten digits of this prime number.
 
-def big_calc():
-    precision = 10 **10
+def pow_mod(base, expt, mod):
+    def iter(base, expt, multiplier):
+        base %= mod
+        multiplier %= mod
 
-    n = 28433
-    for i in xrange(7830457):
-        n = (n * 2) % precision
+        if expt == 1:
+            return (multiplier * base) % mod 
 
-    return n + 1
+        if expt & 1 == 1:
+            return iter(base, expt - 1, multiplier * base)
+
+        return iter(base**2, expt // 2, multiplier)
+
+    return iter(base, expt, 1)
 
 if __name__ == "__main__":
-    print big_calc()
+    print ( 28433 * pow_mod(2,7830457,10**10) + 1 ) % 10**10
