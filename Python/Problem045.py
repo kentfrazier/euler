@@ -19,7 +19,7 @@ def hexagonal(n):
 
 def fn_num_gen(fn, min=0, limit=None, step=1):
     n = min
-    while not limit or n < limit:
+    while limit is None or n < limit:
         yield fn(n)
         n += step
 

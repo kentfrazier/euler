@@ -18,9 +18,9 @@ from itertools import dropwhile, islice, izip, count
 from operator import mul
 from functools import reduce
 
-class Factor_List(defaultdict):
+class FactorList(defaultdict):
     def __init__(self, limit=0):
-        super(Factor_List, self).__init__(list)
+        super(FactorList, self).__init__(list)
         self.limit = 0
         self.factor_to(limit)
 
@@ -55,7 +55,7 @@ class Factor_List(defaultdict):
 
     def factor(self, number):
         if number > self.limit:
-            self.factor_to(number)
+            self.factor_to(number*2)
 
         if self.is_prime(number):
             return [number]
@@ -66,11 +66,11 @@ class Factor_List(defaultdict):
 def first_n_to_n_prime_factors(n):
     start_value = reduce(mul, islice(primes(),0,n))
 
-    factors = Factor_List(start_value * 3)
+    factors = FactorList(10**(n+1))
 
     for seq in izip(*[ count(start_value+i) for i in xrange(n) ]):
         if all( len(set(factors.factor(num))) == n for num in seq ):
             return seq
 
-# TODO: Work out how to make this more efficient to solve the problem
-# currently won't even solve for 3 in a reasonable amount of time
+if __name__ == "__main__":
+    print first_n_to_n_prime_factors(4)[0]

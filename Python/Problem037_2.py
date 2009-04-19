@@ -28,6 +28,13 @@ def is_truncatable(number):
 
     return True
 
+mod30_set = set([1,7,11,13,17,19,23,29])
+
+def is_potential_prime(n):
+    if n % 30 in mod30_set:
+        return True
+    return False
+
 def potential_primes(limit=None):
     
     def candidates(start=1):
@@ -37,14 +44,7 @@ def potential_primes(limit=None):
             yield n - 1
             yield n + 1
             
-    mod30_set = set([1,7,11,13,17,19,23,29])
-
-    def is_potential(n):
-        if n % 30 in mod30_set:
-            return True
-        return False
-
-    for n in chain([2,3,5],ifilter(is_potential,candidates())):
+    for n in chain([2,3,5],ifilter(is_potential_prime,candidates())):
 
         if limit and n > limit:
             break
