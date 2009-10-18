@@ -112,13 +112,13 @@ class Hand(object):
             flush = False
 
         if ( len(set( card.rank for card in self.cards ) ^ set([ACE, TWO, THREE, FOUR, FIVE])) == 0
-                or all( (self.cards[i].rank == (self.cards[i+1].rank - 1)) for i in range(len(self.cards)-1) ) ):
+                or all( (self.cards[i].rank == (self.cards[i+1].rank + 1)) for i in range(len(self.cards)-1) ) ):
             straight = True
         else:
             straight = False
 
         if straight or flush:
-            self.active_cards = copy(self.cards)
+            self.active_cards = self.cards
             self.remaining_cards = []
             self.major_rank = None
             self.minor_rank = None
@@ -146,7 +146,7 @@ class Hand(object):
             self.major_rank = three_sets[0]
             if len(pairs) == 1:
                 self.minor_rank = pairs[0]
-                self.active_cards = copy(self.cards)
+                self.active_cards = self.cards
                 self.remaining_cards = []
                 return FULL_HOUSE
             self.minor_rank = None
@@ -168,8 +168,8 @@ class Hand(object):
             self.remaining_cards = [ card for card in self.cards if card.rank not in pairs]
             return PAIR
         
-        self.active_cards = [self.cards[-1]]
-        self.remaining_cards = self.cards[:-1]
+        self.active_cards = [self.cards[0]]
+        self.remaining_cards = self.cards[1:]
         self.major_rank = self.active_cards[0].rank
         self.minor_rank = None
         return HIGH_CARD
