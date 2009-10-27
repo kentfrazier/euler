@@ -17,7 +17,7 @@ from Problem049 import is_prime
 import psyco
 psyco.full()
 
-primes = prime_sieve(10000)
+primes = prime_sieve(100000)
 primes.remove(2) # Can never be in a set of more than one
 primes.remove(5) # Can never be in a set of more than one
 
@@ -82,6 +82,6 @@ def concatenable_prime_set(size, maximum=None):
 
 if __name__ == "__main__":
     assert(sum(concatenable_prime_set(4).next()) == sum([3, 7, 109, 673]))
-    #prime_set = concatenable_prime_set(5).next()
-    #print prime_set
-    #print sum(prime_set)
+    prime_set = concatenable_prime_set(5).next()
+    print prime_set
+    print sum(prime_set)
