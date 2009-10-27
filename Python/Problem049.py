@@ -17,7 +17,12 @@ from Problem037_2 import is_potential_prime
 def digit_permutations(n):
     return [ int(''.join(perm)) for perm in permutations(str(n)) ]
 
+low_primes = set([2,3,5])
 def is_prime(n):
+    if n == 1:
+        return False
+    if n in low_primes:
+        return True
     if not is_potential_prime(n) or not is_really_prime(n):
         return False
     return True
