@@ -14,19 +14,26 @@ from math import floor, log10
 from Problem010 import prime_sieve
 from Problem049 import is_prime
 
+import psyco
+psyco.full()
+
 primes = prime_sieve(10000)
 primes.remove(2) # Can never be in a set of more than one
 primes.remove(5) # Can never be in a set of more than one
 
+whitelist = defaultdict(set)
 blacklist = defaultdict(set)
 good_sets = defaultdict(list)
 
 def is_concatenable_pair(x, y):
 #    if y in blacklist[x]:
 #        return False
+    if y in whitelist[x]:
+        return True
     if not (is_concatenable_combo(x, y) and is_concatenable_combo(y, x)):
         blacklist[x].add(y)
         return False
+    whitelist[x].add(y)
     return True
 
 def is_concatenable_combo(x, y):
@@ -75,6 +82,6 @@ def concatenable_prime_set(size, maximum=None):
 
 if __name__ == "__main__":
     assert(sum(concatenable_prime_set(4).next()) == sum([3, 7, 109, 673]))
-    prime_set = concatenable_prime_set(5).next()
-    print prime_set
-    print sum(prime_set)
+    #prime_set = concatenable_prime_set(5).next()
+    #print prime_set
+    #print sum(prime_set)
