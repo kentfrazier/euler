@@ -7,7 +7,7 @@
 # Find the lowest sum for a set of five primes for which any two 
 # primes concatenate to produce another prime.
 
-from itertools import dropwhile, permutations
+from itertools import dropwhile
 from collections import defaultdict
 from math import floor, log10
 
@@ -18,18 +18,19 @@ primes = prime_sieve(10000)
 primes.remove(2) # Can never be in a set of more than one
 primes.remove(5) # Can never be in a set of more than one
 
-blacklist = {}
+blacklist = defaultdict(set)
 good_sets = defaultdict(list)
 
 def is_concatenable_pair(x, y):
-    pair = (x, y)
-    if blacklist.get(pair):
+#    if y in blacklist[x]:
+#        return False
+    if not (is_concatenable_combo(x, y) and is_concatenable_combo(y, x)):
+        blacklist[x].add(y)
         return False
-    for n, m in permutations(pair, 2):
-        if not is_prime(int(m + n * 10**(floor(log10(m)+1)))):
-            blacklist[pair] = True
-            return False
     return True
+
+def is_concatenable_combo(x, y):
+    return is_prime(int(y + x * 10**(floor(log10(y)+1))))
 
 def concatenable_prime_set(size, maximum=None):
 
@@ -53,6 +54,14 @@ def concatenable_prime_set(size, maximum=None):
 
         for test_set in concatenable_prime_set(size - 1, largest):
             valid = True
+
+            for test_num in test_set:
+                if largest in blacklist[test_num]:
+                    valid = False
+                    break
+            if not valid: 
+                continue
+
             for test_num in test_set:
                 if not is_concatenable_pair(test_num, largest):
                     valid = False
