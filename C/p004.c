@@ -52,12 +52,12 @@ int is_palindrome(char *str) {
 }
 
 int largest_palindrome(int size) {
-    int num1, num2, max, product;
+    int num1, num2, max, product, limit;
     int largest = 0;
     char str[MAXSIZE];
 
     max = (int) (pow(10, size) - 1);
-    for (num1 = max; num1 >= 0; num1--) {
+    for (num1 = max, limit=pow(10, size - 1); num1 >= limit; num1--) {
         for (num2 = max; num2 >= num1; num2--) {
             product = num1 * num2;
             itoa(product, str, 10);
