@@ -13,31 +13,37 @@ Find the largest palindrome made from the product of two
 
 #define MAXSIZE 1000
 
-void reverse(char str[]) {
+void reverse(char *);
+void itoa(int, char *, int);
+int is_palindrome(char *);
+int largest_palindrome(int);
+
+void reverse(char *str) {
     int i, j;
     char c;
 
-    for (i=0, j=strlen(str)-1; i <= j; i++, j--) {
+    for (i=0, j=strlen(str)-1; i < j; i++, j--) {
         c = str[i];
         str[i] = str[j];
         str[j] = c;
     }
 }
 
-void itoa(int num, char str[], int radix) {
+void itoa(int num, char *str, int radix) {
     int i = 0;
     do {
-        str[i++] = num % radix;
+        str[i] = (num % radix) + 48;
         num /= radix;
+        i++;
     } while (num > 0);
     reverse(str);
+    str[i] = '\0';
 }
 
-int is_palindrome(char str[]) {
+int is_palindrome(char *str) {
     int i, j;
 
-    for (i=0, j=strlen(str)-1; i <= j; i++, j--) {
-        printf("%c, %c", str[i], str[j]);
+    for (i=0, j=strlen(str)-1; i < j; i++, j--) {
         if (str[i] != str[j]) {
             return 0;
         }
@@ -47,6 +53,7 @@ int is_palindrome(char str[]) {
 
 int largest_palindrome(int size) {
     int num1, num2, max, product;
+    int largest = 0;
     char str[MAXSIZE];
 
     max = (int) (pow(10, size) - 1);
@@ -55,13 +62,16 @@ int largest_palindrome(int size) {
             product = num1 * num2;
             itoa(product, str, 10);
             if (is_palindrome(str)) {
-                return product;
+                if (product > largest) {
+                    largest = product;
+                }
             }
         }
     }
+    return largest;
 }
 
 int main() {
-    printf("%d\n", largest_palindrome(2));
+    printf("%d\n", largest_palindrome(3));
     return 0;
 }

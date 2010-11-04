@@ -16,9 +16,6 @@ int is_multiple(unsigned long long num, unsigned long long divisor) {
 }
 
 int is_prime(unsigned long long num) {
-    unsigned long long limit = (unsigned long long) sqrt(num);
-    unsigned long long i;
-
     if (num == 1) {
         return 0;
     }
@@ -28,7 +25,11 @@ int is_prime(unsigned long long num) {
     if (is_multiple(num, 2)) {
         return 0;
     }
-    for (i=3; i <= limit; i += 2) {
+
+    double limit = sqrt((double) num);
+    unsigned long long i;
+
+    for (i = 3; i <= limit; i += 2) {
         if (is_multiple(num, i)) {
             return 0;
         }
