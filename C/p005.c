@@ -10,23 +10,23 @@ numbers from 1 to 20?
 #include <math.h>
 #include <stdlib.h>
 
-struct prime_sieve make_prime_sieve(int);
-void reset_prime_sieve(struct prime_sieve *);
-void cleanup_prime_sieve(struct prime_sieve *);
-int next_prime(struct prime_sieve *, int *);
-int is_prime(int, struct prime_sieve *);
-int smallest_divisible_by_range(int);
-
-struct prime_sieve {
+typedef struct {
     int *numbers;
     int position;
     int limit;
-};
+} PrimeSieve;
 
-struct prime_sieve make_prime_sieve(int limit) {
+PrimeSieve make_prime_sieve(int);
+void reset_prime_sieve(PrimeSieve *);
+void cleanup_prime_sieve(PrimeSieve *);
+int next_prime(PrimeSieve *, int *);
+int is_prime(int, PrimeSieve *);
+int smallest_divisible_by_range(int);
+
+PrimeSieve make_prime_sieve(int limit) {
     int *numbers = malloc(sizeof(int) * (limit + 1));
 
-    struct prime_sieve sieve = { numbers, 1, limit };
+    PrimeSieve sieve = { numbers, 1, limit };
 
     int i;
     for (i = 2; i <= limit; i++) {
@@ -50,19 +50,19 @@ struct prime_sieve make_prime_sieve(int limit) {
     return sieve;
 }
 
-void cleanup_prime_sieve(struct prime_sieve *sieve) {
+void cleanup_prime_sieve(PrimeSieve *sieve) {
     free(sieve->numbers);
 }
 
-void reset_prime_sieve(struct prime_sieve *sieve) {
+void reset_prime_sieve(PrimeSieve *sieve) {
     sieve->position = 1;
 }
 
-int is_prime(int num, struct prime_sieve *sieve) {
+int is_prime(int num, PrimeSieve *sieve) {
     return *(sieve->numbers + sieve->position);
 }
 
-int next_prime(struct prime_sieve *sieve, int *prime) {
+int next_prime(PrimeSieve *sieve, int *prime) {
     do {
         sieve->position += 1;
     } while ((sieve->position <= sieve->limit) &&
@@ -88,7 +88,7 @@ int smallest_divisible_by_range(int limit) {
         result,
         product = 1;
 
-    struct prime_sieve sieve = make_prime_sieve(limit);
+    PrimeSieve sieve = make_prime_sieve(limit);
 
     for (i = 2; i <= limit; i++) {
         num = i;
