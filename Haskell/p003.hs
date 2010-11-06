@@ -6,13 +6,12 @@ primeFactors :: (Integral a) => a -> [a]
 primeFactors 1 = []
 primeFactors 2 = [2]
 primeFactors 3 = [3]
-primeFactors num = if numIsPrime then [num] else some ++ rest
+primeFactors num = if numIsPrime then [num] else factor:rest
     where limit = floor . sqrt $ fromIntegral num
           notMultiple = (/=0) . (mod num)
           options = dropWhile notMultiple $ 2:[3,5..limit]
           numIsPrime = options == []
           factor = head options
-          some = primeFactors factor
           rest = primeFactors $ div num factor
 
 largestPrimeFactor :: (Integral a, Ord a) => a -> a
