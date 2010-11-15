@@ -6,9 +6,9 @@
 # 
 # How many circular primes are there below one million?
 
-# from Problem003 import primes, prime_number_list, prime_list
-from Problem010 import prime_list3 as prime_list
 from collections import deque
+
+from Problem010 import prime_list3 as prime_list
 
 def rotations(number, include_original=False):
     digits = deque([ digit for digit in str(number) ])

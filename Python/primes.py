@@ -1,5 +1,5 @@
 from itertools import ifilter, count
-from math import floor, sqrt, ceil
+from math import sqrt, ceil
 
 low_prime_set = set([2,3,5])
 mod30_set = set([1,7,11,13,17,19,23,29])

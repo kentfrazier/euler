@@ -14,7 +14,7 @@
 
 from Problem003 import primes
 from collections import defaultdict
-from itertools import dropwhile, islice, izip, count
+from itertools import islice, izip, count
 from operator import mul
 from functools import reduce
 
