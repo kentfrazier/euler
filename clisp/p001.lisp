@@ -4,7 +4,7 @@
 ;Find the sum of all the multiples of 3 or 5 below 1000.
 
 (defun is-multiple-p (num divisor)
-  (= 0 (mod num divisor)))
+  (zerop (mod num divisor)))
 
 (defun is-multiple-many-p (num divisors)
   (flet ((test-p (divisor) (is-multiple-p num divisor)))
