@@ -5,7 +5,7 @@ def list_prime_factors(number):
     current = number
     primes = []
     factors = []
-    prime_generator = Problem003.primes(number+1)
+    prime_generator = p003.primes(number+1)
 
     def get_next_number(num):
         if num in primes:
