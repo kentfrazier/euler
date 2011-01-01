@@ -8,7 +8,7 @@
 
 from collections import deque
 
-from Problem010 import prime_list3 as prime_list
+from p010 import prime_list3 as prime_list
 
 def rotations(number, include_original=False):
     digits = deque([ digit for digit in str(number) ])

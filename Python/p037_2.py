@@ -8,7 +8,7 @@
 # 
 # NOTE: 2, 3, 5, and 7 are not considered to be truncatable primes.
 
-from Problem032 import render_to_number
+from p032 import render_to_number
 from itertools import ifilter, product, count, chain
 from math import sqrt
 

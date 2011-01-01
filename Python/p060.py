@@ -11,8 +11,8 @@ from itertools import dropwhile
 from collections import defaultdict
 from math import floor, log10
 
-from Problem010 import prime_sieve
-from Problem049 import is_prime
+from p010 import prime_sieve
+from p049 import is_prime
 
 import psyco
 psyco.full()

@@ -11,7 +11,7 @@
 # the value of D?
 
 from __future__ import division
-from Problem045 import pentagonal, fn_num_gen
+from p045 import pentagonal, fn_num_gen
 from itertools import islice, ifilter, count, takewhile
 from math import sqrt
 from operator import sub

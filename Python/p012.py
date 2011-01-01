@@ -18,7 +18,7 @@
 # 
 # What is the value of the first triangle number to have over five hundred divisors?
 
-from Problem005 import list_prime_factors
+from p005 import list_prime_factors
 
 def triangle_numbers(limit=0):
     triangle = 1

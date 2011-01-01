@@ -8,7 +8,7 @@
 # 
 # NOTE: 2, 3, 5, and 7 are not considered to be truncatable primes.
 
-from Problem010 import prime_list3
+from p010 import prime_list3
 from itertools import ifilter
 
 primes = prime_list3(1000000)

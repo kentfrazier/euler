@@ -13,7 +13,7 @@
 # What is the smallest odd composite that cannot be written as the sum of a 
 # prime and twice a square?
 
-from Problem010 import prime_sieve
+from p010 import prime_sieve
 from math import sqrt
 
 def smallest_odd_composite():

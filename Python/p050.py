@@ -10,7 +10,7 @@
 # Which prime, below one-million, can be written as the sum of the most 
 # consecutive primes?
 
-from Problem010 import prime_list3 as prime_sieve
+from p010 import prime_list3 as prime_sieve
 
 def largest_prime_seq(limit):
     primes = prime_sieve(limit)

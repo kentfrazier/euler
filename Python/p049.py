@@ -11,8 +11,8 @@
 # sequence?
 
 from itertools import permutations, ifilter
-from Problem037_2 import is_prime as is_really_prime
-from Problem037_2 import is_potential_prime
+from p037_2 import is_prime as is_really_prime
+from p037_2 import is_potential_prime
 
 def digit_permutations(n):
     return [ int(''.join(perm)) for perm in permutations(str(n)) ]

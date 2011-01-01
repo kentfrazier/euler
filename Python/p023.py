@@ -18,7 +18,7 @@
 # Find the sum of all the positive integers which cannot be written as 
 # the sum of two abundant numbers.
 
-from Problem021 import proper_divisors
+from p021 import proper_divisors
 
 UPPER_LIMIT = 28123
 

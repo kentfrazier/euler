@@ -22,7 +22,7 @@
 # that produces the maximum number of primes for consecutive values of n, 
 # starting with n = 0.
 
-from Problem010 import prime_list3
+from p010 import prime_list3
 
 primes = set(prime_list3(79**2 + 999*79 + 1000))
 

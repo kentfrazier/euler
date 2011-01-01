@@ -9,7 +9,7 @@
 # 
 # Find the next triangle number that is also pentagonal and hexagonal.
 
-from Problem042 import triangle
+from p042 import triangle
 
 def pentagonal(n):
     return (n * (3*n - 1)) / 2

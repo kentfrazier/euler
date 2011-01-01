@@ -12,7 +12,7 @@
 # necessarily adjacent digits) with the same digit, is part of an 
 # eight prime value family.
 
-from Problem049 import is_prime
+from p049 import is_prime
 from itertools import product, count
 
 def f(n):

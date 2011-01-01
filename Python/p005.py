@@ -1,4 +1,4 @@
-import Problem003
+import p003
 
 
 def list_prime_factors(number):

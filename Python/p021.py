@@ -9,7 +9,7 @@
 #
 # Evaluate the sum of all the amicable numbers under 10000.
 
-from Problem012 import factors
+from p012 import factors
 
 def proper_divisors(num):
     return factors(num)[:-1]

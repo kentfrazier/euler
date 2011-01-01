@@ -1,4 +1,4 @@
-from Problem018_3 import Triangle, parse_triangle
+from p018_3 import Triangle, parse_triangle
 
 if __name__ == "__main__":
     f = open('triangle.txt')

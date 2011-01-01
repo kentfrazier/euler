@@ -12,7 +12,7 @@
 # containing nearly two-thousand common English words, how many are triangle 
 # words?
 
-from Problem022 import char_values
+from p022 import char_values
 
 def triangle(n):
     return (n * (n + 1)) // 2

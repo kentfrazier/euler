@@ -28,7 +28,7 @@
 # NOTE: Wording was modified slightly on 24 April 2007 to emphasise the 
 # theoretical nature of Lychrel numbers.
 
-from Problem036 import is_palindrome
+from p036 import is_palindrome
 from itertools import ifilter
 
 def reverse_num(number):

@@ -22,7 +22,7 @@
 from __future__ import division
 from itertools import count
 
-from Problem049 import is_prime
+from p049 import is_prime
 
 def interval_gen():
     for i in count(1):

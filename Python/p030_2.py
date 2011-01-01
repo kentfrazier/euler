@@ -12,7 +12,7 @@
 # Find the sum of all the numbers that can be written as the sum of fifth 
 # powers of their digits.
 
-from Problem034 import combinations
+from p034 import combinations
 
 def power_sum(power):
     def p_sum(number):

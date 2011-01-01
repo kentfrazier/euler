@@ -12,7 +12,7 @@
 # Find the first four consecutive integers to have four distinct primes 
 # factors. What is the first of these numbers?
 
-from Problem003 import primes
+from p003 import primes
 from collections import defaultdict
 from itertools import islice, izip, count
 from operator import mul

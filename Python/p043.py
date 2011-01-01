@@ -16,8 +16,8 @@
 # Find the sum of all 0 to 9 pandigital numbers with this property.
 
 from itertools import permutations, ifilter, cycle, izip
-from Problem010 import prime_sieve
-from Problem032 import render_to_number
+from p010 import prime_sieve
+from p032 import render_to_number
 
 def pandigitals(length):
     if length > 10:

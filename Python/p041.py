@@ -4,7 +4,7 @@
 # 
 # What is the largest n-digit pandigital prime that exists?
 
-from Problem010 import prime_list3
+from p010 import prime_list3
 from itertools import ifilter
 try:
     import psyco
