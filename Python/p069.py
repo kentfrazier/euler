@@ -27,8 +27,10 @@ from p047 import FactorList
 factor_list = FactorList()
 
 def totient(num):
+    if num == 1:
+        return 1 # special case
     factors = set(factor_list.factor(num))
-    coprime_count = num * reduce(mul, (1 - (1. / prime) for prime in factors))
+    coprime_count = num * reduce(mul, [1 - (1. / prime) for prime in factors])
     return int(round(coprime_count))
 
 def totient_ratio(num):

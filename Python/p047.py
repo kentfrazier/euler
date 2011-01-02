@@ -21,6 +21,7 @@ from functools import reduce
 class FactorList(defaultdict):
     def __init__(self, limit=0):
         super(FactorList, self).__init__(list)
+        self._cached = {}
         self.limit = 0
         self.factor_to(limit)
 
@@ -53,17 +54,24 @@ class FactorList(defaultdict):
         return False
 
     def factor(self, number):
+        if number in self._cached:
+            return self._cached[number]
+
         if number > self.limit:
             self.factor_to(number*2)
 
         if self.is_prime(number):
             return [number]
 
-        factors = []
-        for factor in self[number]:
-            factors.extend(self.factor(factor))
-        factors.sort()
-        return factors
+        all_factors = self[number]
+        prime_factors = [all_factors[0]]
+
+        for factor in all_factors[1:]:
+            prime_factors.extend(self.factor(factor))
+        prime_factors.sort()
+
+        self._cached[number] = prime_factors
+        return prime_factors
 
 def first_n_to_n_prime_factors(n):
     start_value = reduce(mul, islice(primes(),0,n))

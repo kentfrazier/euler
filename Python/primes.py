@@ -21,7 +21,8 @@ def potential_primes(start=2, limit=None):
     for i in [ n for n in [2,3] if n >= start and n < limit ]:
         yield i
             
-    for candidate in ifilter(is_potential_prime, candidates(int(ceil(start / 6.)))):
+    for candidate in ifilter(is_potential_prime,
+                             candidates(int(ceil(start / 6.)))):
         if limit is not None and candidate > limit:
             return
         yield candidate
@@ -56,13 +57,42 @@ def prime_sieve(limit):
 
     return [ n for n in sorted(primes.keys()) if primes[n] ]
 
+from math import log
+def prime_bit_sieve(limit):
+    # this is fun and works but is super slow compared to the dict approach
+    # above. I wonder if that is just Python or if the same is true in C
+    primes = int('0b' + '1' * limit, 2)
+    primes ^= 3 # 0 and 1 are not prime
+    test_max = sqrt(limit)
+
+    bit_limit = 1 << (limit + 1)
+    for num in xrange(2, limit):
+        if num > test_max:
+            break
+
+        if not primes & (1 << num):
+            continue
+
+        mask = 0
+        while mask < bit_limit:
+            mask += 1
+            mask <<= num
+
+        mask <<= num # don't blot out the prime
+        mask = mask
+        primes &= ~mask
+
+    return [ i for i in xrange(int(ceil(log(primes, 2))) + 1)
+             if primes & (1 << i) ]
+
 def primes(start=2, limit=None):
     for prime in _prime_list:
         if limit is not None and prime > limit:
             return
         if prime >= start:
             yield prime
-    for prime in ifilter(is_really_prime, potential_primes(start=_prime_list[-1])):
+    for prime in ifilter(is_really_prime,
+                         potential_primes(start=_prime_list[-1])):
         _prime_list.append(prime)
         if limit is not None and prime > limit:
             return
