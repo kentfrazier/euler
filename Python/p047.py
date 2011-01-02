@@ -34,14 +34,13 @@ class FactorList(defaultdict):
             if num in self:
                 continue
 
-            multiple = num + start_value - (start_value % num)
+            multiple = max([num, start_value - (start_value % num)])
             while True:
                 multiple += num
-
-                if multiple > limit: break
-
+                if multiple > limit:
+                    break
                 if multiple not in self:
-                    self[multiple] += [num, multiple // num]
+                    self[multiple].extend([num, multiple // num])
 
         self.limit = limit
 
@@ -60,8 +59,11 @@ class FactorList(defaultdict):
         if self.is_prime(number):
             return [number]
 
-        return sorted(reduce(lambda x, y: x + y, 
-                [ self.factor(n) for n in self[number] ]))
+        factors = []
+        for factor in self[number]:
+            factors.extend(self.factor(factor))
+        factors.sort()
+        return factors
 
 def first_n_to_n_prime_factors(n):
     start_value = reduce(mul, islice(primes(),0,n))
