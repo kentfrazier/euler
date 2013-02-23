@@ -1,0 +1,11 @@
+syntax: glob
+
+*.out
+*.pyc
+*.pyo
+*.bak
+*.swp
+*~
+
+project-euler.html
+project-euler_files/
