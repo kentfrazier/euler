@@ -2,8 +2,6 @@ package main
 
 import "fmt"
 
-// fibonacci returns a function that can be called to return the next number
-// in the fibonacci sequence
 func fibonacci(c chan int) {
 	current := 0
 	next := 1
