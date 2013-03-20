@@ -19,9 +19,9 @@ func evenFibSum(limit int) int {
 
 	go fibonacci(c)
 	for n := range c {
-        if n > limit {
-            break;
-        }
+		if n > limit {
+			break
+		}
 		if n%2 == 0 {
 			sum += n
 		}
